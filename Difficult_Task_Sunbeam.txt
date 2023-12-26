@@ -1,0 +1,31 @@
+Take a Debian Machine in Virtual Box
+	Keep the Username - sunbeam
+			 Password - sunbeam			 Update the packages
+	Create a Snapshot of Fresh Machine.
+
+	In the Home Directory, Create a Directory name as Project
+	Initiate the Project directory as a Git Directory
+	
+Inside the GitHub -> Create a (Private) Repository named as SunProject
+(Which will be considered as a web project)
+Setup the webhook to send the notification to Jenkins Machine
+Inside the AWS. (Create a VPC)
+	1. Jenkins Machine
+			This machine will help us to setup the CI/CD pipeline
+			Project Build - Webhook (push event)
+	2. Docker
+			This machine will generate the container -> dockerhub
+	3. Web Environment
+			1. Dockerswarm
+			2. Node1
+			3. node2
+			(Container will be deployed using dockerswarm and 2 other nodes (replicas - 3) for high availability and load balancing)
+	4. Database Server (This will hold the database of the Webserver)
+
+If the Build is failed in the jenkins, it should initiate the mail notification.
+
+Notes:- You have to build a small web application with login Page and store the data of the authentication inside the database server. And for that database connectivity will be required.
+
+Result
+When you use the push command in the virtual machine, it should update the Website without any other interaction.	
+Database Handling will be manual

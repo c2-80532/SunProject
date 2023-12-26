@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    stages {
+        stage ('SCM') {
+            steps {
+                git branch: 'main', url: 'https://github.com/c2-80532/SunProject.git'
+            }
+        }
+        stage ('docker login') {
+            steps {
+                sh 'echo | /usr/bin/docker login -u shubhamchau --password-stdin'
+            }
+        }
+        stage ('docker build image') {
+            steps {
+                sh '/usr/bin/docker build -t shubhamchau/sunproject .'
+            }
+        }
+        stage ('docker push image') {
+            steps {
+                sh '/usr/bin/docker image push shubhamchau/sunproject'
+            }
+        }
+        stage ('docker pull image') {
+            steps {
+                sh '/usr/bin/docker image pull shubhamchau/sunproject'
+            }
+        }
+        stage ('docker create container') {
+            steps {
+                sh '/usr/bin/docker container  run -d  --name webcon -p 9090:80 shubhamchau/sunproject'
+            }
+        }
+    }
+}
